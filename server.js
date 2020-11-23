@@ -39,7 +39,7 @@ app.use('/', express.static(__dirname + '/app/public'));
 // simple route
 app.get("/", (req, res) => {
 	res.json({
-		message: "Welcome to bezkoder application."
+		message: "Welcome to evento node application."
 	});
 });
 
