@@ -44,6 +44,7 @@ exports.show = (req, res) => {
 				res.status(200).json({
 					roles:authorities,
 					name:profile.first_name,
+					first_name:profile.first_name,
 					last_name:profile.last_name,
 					email:profile.email,
 					phone:profile.phone,
