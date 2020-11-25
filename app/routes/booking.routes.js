@@ -16,6 +16,8 @@ module.exports = function (app) {
 
 	app.get("/api/bookings/user", [authJwt.verifyToken], controller.user);
 
+	app.get("/api/bookings/pending", controller.pending);
+
 	app.get("/api/bookings/:slug", [authJwt.verifyToken], controller.show);
 
 	app.post("/api/bookings", [authJwt.verifyToken], controller.store);

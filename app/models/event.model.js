@@ -5,10 +5,6 @@ const Package = new mongoose.Schema({
 		type: String,
 		required: [true, "can't be blank"],
 	},
-	description: {
-		type: String,
-		required: [true, "can't be blank"],
-	},
 	features: {
 		type: Array,
 		required: [true, "can't be blank"],

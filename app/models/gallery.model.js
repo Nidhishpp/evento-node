@@ -14,6 +14,7 @@ const Gallery = mongoose.model(
 		featured: {
 			type: Boolean,
 			required: [true, "can't be blank"],
+			default: false
 		}
 	})
 );

@@ -82,6 +82,31 @@ exports.store = (req, res) => {
 
 };
 
+exports.featureUpdate = (req, res) => {
+
+	const id = {
+		_id: req.params.id
+	}
+	var newvalues = {
+		$set: {
+			featured: req.body.featured
+		}
+	};
+
+	Event.updateOne(id, newvalues, (err, event) => {
+		if (err) {
+			res.status(500).json({
+				message: err
+			});
+			return;
+		} else {
+			res.status(200).json(event)
+		}
+
+	});
+
+};
+
 exports.delete = (req, res) => {
 
 	const id = {

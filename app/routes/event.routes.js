@@ -40,6 +40,8 @@ module.exports = function (app) {
 		name: 'gallery',
 		maxCount: 8
 	}]), [authJwt.verifyToken], controller.store);
+	
+	app.patch("/api/events/featured/:id", [authJwt.verifyToken], controller.featureUpdate);
 
 	app.delete("/api/events/:id", [authJwt.verifyToken], controller.delete);
 	

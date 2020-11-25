@@ -65,7 +65,12 @@ const Booking = mongoose.model(
 		},
 		status: {
 			type: String,
-			required: [true, "can't be blank"]
+			required: [true, "can't be blank"],
+			default:"pending"
+		},
+		Created_date: {
+			type: Date,
+			default: Date.now
 		},
 	})
 );

@@ -34,6 +34,22 @@ exports.user = (req, res) => {
 		});
 };
 
+exports.pending = (req, res) => {
+	Booking.find({
+			status: "pending"
+		})
+		.exec((err, bookings) => {
+			if (err) {
+				res.status(500).json({
+					message: err
+				});
+				return;
+			}
+
+			res.status(200).json(bookings);
+		});
+};
+
 exports.show = (req, res) => {
 	Booking.findOne({
 			slug: req.params.slug
@@ -68,8 +84,7 @@ exports.store = (req, res) => {
 		approx_count: req.body.approx_count,
 		hall: req.body.hall,
 		message: req.body.message,
-		user: req.userId,
-		status: "pending"
+		user: req.userId
 	});
 
 	booking.save((err, booking) => {

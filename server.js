@@ -2,7 +2,6 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const db = require("./app/models");
-const Role = db.role;
 const dbConfig = require('./app/config/db.config');
 const app = express();
 
@@ -45,6 +44,7 @@ app.get("/", (req, res) => {
 
 // routes
 require('./app/routes/auth.routes')(app);
+require('./app/routes/dashboard.routes')(app);
 require('./app/routes/profile.routes')(app);
 require('./app/routes/gallery.routes')(app);
 require('./app/routes/event.routes')(app);

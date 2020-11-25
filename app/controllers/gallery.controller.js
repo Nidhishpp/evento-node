@@ -32,17 +32,25 @@ exports.featured = (req, res) => {
 };
 
 exports.store = (req, res) => {
-
+	try {
+		console.log(req.body)
+		var filename = req.file.filename;
+	} catch (error) {
+		res.status(500).json({
+			message: "File Not Found"
+		});
+		return;
+	}
 	const gallery = new Gallery({
 		title: req.body.title,
-		image: 'http://localhost:8080/uploads/gallery/' + req.file.filename,
+		image: 'http://localhost:8080/uploads/gallery/' + filename,
 		featured: req.body.featured
 	});
 
 	gallery.save((err, gallery) => {
 		if (err) {
 			res.status(500).json({
-				message: err
+				message: err.message
 			});
 			return;
 		} else {
