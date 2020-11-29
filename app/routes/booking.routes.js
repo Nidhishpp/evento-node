@@ -12,7 +12,7 @@ module.exports = function (app) {
 		next();
 	});
 
-	app.get("/api/bookings", [authJwt.verifyToken], controller.index);
+	app.get("/api/bookings", controller.index);
 
 	app.get("/api/bookings/user", [authJwt.verifyToken], controller.user);
 

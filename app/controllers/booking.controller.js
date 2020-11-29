@@ -1,11 +1,35 @@
 const db = require("../models");
 const Booking = db.booking;
+const Profile = db.profile;
 
 exports.index = (req, res) => {
-	Booking.find()
-		.populate("event")
+	Booking.aggregate([{
+				$lookup: {
+					from: 'profiles',
+					localField: 'user',
+					foreignField: 'user',
+					as: 'profile'
+				}
+			}, {
+				$lookup: {
+					from: 'events',
+					localField: 'event',
+					foreignField: '_id',
+					as: 'event'
+				}
+			},
+			{
+				"$addFields": {
+					"profile": {
+						"$arrayElemAt": ["$profile", 0]
+					},
+					"event": {
+						"$arrayElemAt": ["$event", 0]
+					},
+				}
+			}
+		])
 		.exec((err, bookings) => {
-			console.log(err);
 			if (err) {
 				res.status(500).json({
 					message: err

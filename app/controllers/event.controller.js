@@ -50,7 +50,6 @@ exports.show = (req, res) => {
 };
 
 exports.store = (req, res) => {
-
 	var gallery = [];
 	req.files.gallery.forEach(function fn(item, index) {
 		gallery.push('http://localhost:8080/uploads/events/' + item.filename);
